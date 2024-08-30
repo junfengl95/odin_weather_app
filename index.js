@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             country.textContent = data.resolvedAddress;
 
+            console.log(next5days[0].conditions);
             changeBackground(next5days[0].conditions);
 
             // Display next 5 days forecast
@@ -89,18 +90,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function changeBackground(conditions) {
         //Remoev all exisiting weather-related background classes
-        document.body.classList.remove('clear', 'partially-cloudy', 'rain-partially-cloudy', 'rain-overcast', 'overcast');
+        document.body.classList.remove('clear', 'partially-cloudy', 'rain', 'overcast');
 
         // Add the appropraite class based on conditions
         if (conditions.toLowerCase().includes('clear')){
             document.body.classList.add('clear');
+        } else if (conditions.toLowerCase().includes('rain')) {
+            document.body.classList.add('rain');
         } else if (conditions.toLowerCase().includes('partially cloudy')) {
             document.body.classList.add('partially-cloudy');
-        } else if (conditions.toLowerCase().includes('rain, partially cloudy')) {
-            document.body.classList.add('rain-partially-cloudy');
-        } else if (conditions.toLowerCase().includes('rain, overcast')) {
-            document.body.classList.add('rain-overcast');
-        } else if (conditions.toLowerCase().includes('overcast')) {
+        }else if (conditions.toLowerCase().includes('overcast')) {
             document.body.classList.add('overcast');
         }
     }
